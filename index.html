@@ -540,9 +540,11 @@ nav{
 
   justify-content:center;
 
-  width:40px;
+  gap:8px;
 
-  height:40px;
+  width:42px;
+
+  height:42px;
 
   border-radius:12px;
 
@@ -550,25 +552,76 @@ nav{
 
   color:var(--blue);
 
-  font-size:19px;
+  font-size:18px;
 
   text-decoration:none;
 
+  overflow:hidden;
+
+  position:relative;
+
   transition:
-    background .3s ease,
-    color .3s ease,
-    transform .3s ease;
+    width .35s var(--ease),
+    background .35s ease,
+    color .35s ease;
+
+}
+
+
+.hero-social-icon i{
+
+  flex-shrink:0;
+
+  transition:
+    color .35s ease;
+
+}
+
+
+.hero-social-icon .social-text{
+
+  max-width:0;
+
+  overflow:hidden;
+
+  white-space:nowrap;
+
+  font-size:13px;
+
+  font-weight:700;
+
+  opacity:0;
+
+  transition:
+    max-width .35s var(--ease),
+    opacity .25s ease;
 
 }
 
 
 .hero-social-icon:hover{
 
+  width:120px;
+
   background:var(--blue);
 
   color:#fff;
 
-  transform:translateY(-3px);
+}
+
+
+.hero-social-icon:hover i{
+
+  color:#fff;
+
+}
+
+
+.hero-social-icon:hover .social-text{
+
+  max-width:70px;
+
+  opacity:1;
 
 }
 
@@ -1775,10 +1828,12 @@ spreadsheets into a single source of truth.
 
 <a href="#" aria-label="LinkedIn" class="hero-social-icon">
   <i class="ti ti-brand-linkedin"></i>
+  <span class="social-text">LinkedIn</span>
 </a>
 
 <a href="mailto:abhay@email.com" aria-label="Email" class="hero-social-icon">
   <i class="ti ti-mail"></i>
+  <span class="social-text">Email</span>
 </a>
 
 </div>
