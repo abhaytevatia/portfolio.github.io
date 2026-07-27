@@ -333,71 +333,90 @@ nav{
 
 /* RESUME BUTTON */
 
-.btn-resume{
+.cssbuttons-io-button{
 
-  display:inline-flex;
+  display:flex;
 
   align-items:center;
 
+  justify-content:center;
+
   gap:8px;
 
-  padding:
-    11px 22px;
+  font-family:inherit;
 
-  border-radius:8px;
-
-  background:var(--blue);
-
-  color:#fff;
-
-  text-decoration:none;
-
-  font-size:14px;
+  cursor:pointer;
 
   font-weight:700;
 
+  font-size:14px;
+
+  padding:11px 22px;
+
+  color:#fff;
+
+  background:var(--blue);
+
+  border:none;
+
   box-shadow:
     0 8px 22px
-    rgba(59,94,255,.18);
+    rgba(59,94,255,.20);
+
+  letter-spacing:.01em;
+
+  border-radius:20em;
+
+  text-decoration:none;
 
   transition:
     transform .3s var(--ease),
-    background .3s ease,
-    box-shadow .3s ease;
-
+    box-shadow .3s ease,
+    background .3s ease;
 }
 
 
-.btn-resume:hover{
+.cssbuttons-io-button svg{
 
-  transform:
-    translateY(-3px);
+  flex-shrink:0;
 
-  background:
-    var(--blue-dark);
-
-  box-shadow:
-    0 14px 30px
-    rgba(59,94,255,.25);
-
-}
-
-
-.btn-resume i{
+  margin-right:2px;
 
   transition:
-    transform .3s ease;
+    transform .3s var(--ease);
 
 }
 
 
-.btn-resume:hover i{
+.cssbuttons-io-button:hover{
 
-  transform:
-    translateY(2px);
+  background:var(--blue-dark);
+
+  transform:translateY(-3px);
+
+  box-shadow:
+    0 12px 28px
+    rgba(59,94,255,.28);
 
 }
 
+
+.cssbuttons-io-button:hover svg{
+
+  transform:translateY(2px);
+
+}
+
+
+.cssbuttons-io-button:active{
+
+  transform:translateY(0);
+
+  box-shadow:
+    0 5px 15px
+    rgba(59,94,255,.20);
+
+}
 
 /* =====================================================
    HERO
@@ -1139,15 +1158,9 @@ footer a:hover{
 /* =====================================================
    IMPORTANT:
 
-   NO RESPONSIVE LAYOUT CHANGES
+   NO RESPONSIVE LAYOUT CHANGES ON DESKTOP/LAPTOP
 
-   We intentionally do NOT have:
-
-   flex-direction:column
-
-   grid-template-columns:1fr
-
-   This means:
+   Above 768px the site behaves EXACTLY as before:
 
    HERO = always left/right
 
@@ -1155,7 +1168,291 @@ footer a:hover{
 
    WORK = always 3 columns
 
+   The fixed-canvas scaling script only runs above
+   768px. Below that, JS disables the scaling and
+   the rules below take over with a real, native
+   mobile layout (not a shrunk-down desktop).
+
 ===================================================== */
+
+
+/* =====================================================
+   MOBILE MENU (hidden on desktop, JS + CSS controlled)
+===================================================== */
+
+.menu-toggle{
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  width:42px;
+
+  height:42px;
+
+  border:1.5px solid var(--line);
+
+  border-radius:12px;
+
+  background:#fff;
+
+  color:var(--ink);
+
+  font-size:20px;
+
+  cursor:pointer;
+
+}
+
+
+.mobile-menu{
+
+  display:none;
+
+}
+
+
+/* =====================================================
+   MOBILE BREAKPOINT
+
+   Everything below only applies at 768px and under.
+   Desktop layout above is completely untouched.
+===================================================== */
+
+@media (max-width:768px){
+
+  /* Let the stage flow naturally instead of being a
+     fixed 1240px canvas that gets scaled down */
+
+  #stage{
+    width:100% !important;
+    transform:none !important;
+  }
+
+  body{
+    width:100% !important;
+    height:auto !important;
+  }
+
+  .wrap{
+    padding:0 20px;
+  }
+
+
+  /* ---------- NAV ---------- */
+
+  nav{
+    height:70px;
+  }
+
+  .logo{
+    font-size:17px;
+  }
+
+  .navlinks{
+    display:none;
+  }
+
+  .cssbuttons-io-button{
+    display:none;
+  }
+
+  .menu-toggle{
+    display:flex;
+  }
+
+  .mobile-menu{
+    position:fixed;
+    top:70px;
+    left:0;
+    right:0;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    padding:14px 20px 22px;
+    background:#fff;
+    border-bottom:1px solid var(--line);
+    box-shadow:0 15px 30px rgba(27,31,59,.08);
+    transform:translateY(-8px);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:
+      transform .25s var(--ease),
+      opacity .25s ease,
+      visibility .25s ease;
+    z-index:998;
+  }
+
+  .mobile-menu.open{
+    transform:translateY(0);
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+  }
+
+  .mobile-menu-link{
+    padding:12px 4px;
+    color:var(--ink);
+    text-decoration:none;
+    font-size:15px;
+    font-weight:600;
+    border-bottom:1px solid var(--line);
+  }
+
+  .mobile-menu-resume{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin-top:10px;
+    padding:12px 20px;
+    background:var(--blue);
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:14px;
+    border-radius:14px;
+  }
+
+
+  /* ---------- HERO ---------- */
+
+  .hero{
+    flex-direction:column !important;
+    height:auto;
+    gap:28px;
+    padding:32px 0 40px;
+    text-align:center;
+  }
+
+  .hero-glow{
+    width:340px;
+    height:340px;
+    left:50%;
+    top:-20px;
+    transform:translateX(-50%);
+  }
+
+  .hero-text{
+    width:100%;
+    flex:none;
+    order:2;
+  }
+
+  .hero-text h1{
+    font-size:26px;
+    line-height:1.3;
+  }
+
+  .hero-text p{
+    margin:16px auto 0;
+    max-width:340px;
+    font-size:14px;
+  }
+
+  .hero-visual{
+    width:100%;
+    flex:none;
+    height:auto;
+    order:1;
+  }
+
+  .hero-visual img{
+    width:100%;
+    max-width:280px;
+    height:auto;
+  }
+
+
+  /* ---------- SECTIONS ---------- */
+
+  section{
+    padding:50px 0;
+  }
+
+  .section-head{
+    margin-bottom:30px;
+  }
+
+  h2{
+    font-size:22px;
+  }
+
+
+  /* ---------- SKILLS ---------- */
+
+  .skills-grid{
+    grid-template-columns:repeat(2,1fr) !important;
+    gap:16px;
+  }
+
+  .skill-card{
+    padding:22px 14px;
+  }
+
+  .skill-desc{
+    font-size:12px;
+  }
+
+
+  /* ---------- FILTER ROW ---------- */
+
+  .filter-row{
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    justify-content:flex-start;
+    padding-bottom:6px;
+    margin-bottom:26px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+
+  .filter-row::-webkit-scrollbar{
+    display:none;
+  }
+
+  .filter-btn{
+    flex:0 0 auto;
+  }
+
+
+  /* ---------- WORK ---------- */
+
+  .work-grid{
+    grid-template-columns:1fr !important;
+    gap:16px;
+  }
+
+
+  /* ---------- SCROLL TO TOP ---------- */
+
+  .scroll-top{
+    right:16px;
+    bottom:16px;
+    width:42px;
+    height:42px;
+    font-size:18px;
+  }
+
+}
+
+
+/* Extra-small phones */
+
+@media (max-width:400px){
+
+  .skills-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  .hero-text h1{
+    font-size:23px;
+  }
+
+}
 
 </style>
 
@@ -1220,25 +1517,77 @@ footer a:hover{
 </div>
 
 
+<!-- MOBILE MENU TOGGLE (mobile only) -->
+
+<button
+  class="menu-toggle"
+  id="menuToggle"
+  aria-label="Open menu"
+  aria-expanded="false"
+>
+  <i class="ti ti-menu-2"></i>
+</button>
+
+
 <!-- RESUME FROM ASSETS FOLDER -->
 
 <a
-  class="btn-resume"
+  class="cssbuttons-io-button"
   href="assets/resume.pdf"
   target="_blank"
   rel="noopener"
 >
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="24"
+    height="24"
+  >
+    <path fill="none" d="M0 0h24v24H0z"></path>
+    <path
+      fill="currentColor"
+      d="M1 14.5a6.496 6.496 0 0 1 3.064-5.519
+      8.001 8.001 0 0 1 15.872 0
+      6.5 6.5 0 0 1-2.936 12L7 21
+      c-3.356-.274-6-3.078-6-6.5zm15.848 4.487
+      a4.5 4.5 0 0 0 2.03-8.309l-.807-.503
+      -.12-.942a6.001 6.001 0 0 0-11.903 0
+      l-.12.942-.805.503a4.5 4.5 0 0 0 2.029 8.309
+      l.173.013h9.35l.173-.013zM13 12h3l-4 5-4-5h3V8h2v4z"
+    ></path>
+  </svg>
 
-<i class="ti ti-download"></i>
-
-Resume
-
+  <span>Resume</span>
 </a>
 
 
 </nav>
 
 </div>
+
+</div>
+
+
+<!-- MOBILE MENU PANEL -->
+
+<div
+  class="mobile-menu"
+  id="mobileMenu"
+>
+
+<a href="#about" class="mobile-menu-link">About</a>
+<a href="#skills" class="mobile-menu-link">Skills</a>
+<a href="#work" class="mobile-menu-link">Work</a>
+
+<a
+  href="assets/resume.pdf"
+  target="_blank"
+  rel="noopener"
+  class="mobile-menu-resume"
+>
+  <i class="ti ti-download"></i>
+  Resume
+</a>
 
 </div>
 
@@ -1857,6 +2206,8 @@ github
 
 const STAGE_WIDTH = 1240;
 
+const MOBILE_BREAKPOINT = 768;
+
 const stage =
   document.getElementById('stage');
 
@@ -1865,6 +2216,33 @@ function fitStage(){
 
   const viewportWidth =
     window.innerWidth;
+
+
+  /*
+    Below the mobile breakpoint, we do NOT
+    scale the fixed 1240px canvas down.
+
+    Shrinking the whole desktop layout is what
+    made mobile look bad (tiny unreadable text,
+    tiny tap targets). Instead, CSS media queries
+    take over and give mobile a real, native
+    responsive layout at 100% width.
+
+    Above the breakpoint, behavior is 100%
+    unchanged from before.
+  */
+
+  if(viewportWidth <= MOBILE_BREAKPOINT){
+
+    stage.style.transform = 'none';
+
+    document.body.style.width = '';
+
+    document.body.style.height = '';
+
+    return;
+
+  }
 
 
   /*
@@ -2174,10 +2552,109 @@ scrollTop.addEventListener(
 );
 
 
+
+/* =====================================================
+   MOBILE MENU TOGGLE
+===================================================== */
+
+
+const menuToggle =
+  document.getElementById(
+    'menuToggle'
+  );
+
+
+const mobileMenu =
+  document.getElementById(
+    'mobileMenu'
+  );
+
+
+if(menuToggle && mobileMenu){
+
+  menuToggle.addEventListener(
+    'click',
+    () => {
+
+      const isOpen =
+        mobileMenu.classList.toggle(
+          'open'
+        );
+
+      menuToggle.setAttribute(
+        'aria-expanded',
+        isOpen
+      );
+
+      menuToggle.innerHTML =
+        isOpen
+        ? '<i class="ti ti-x"></i>'
+        : '<i class="ti ti-menu-2"></i>';
+
+    }
+  );
+
+
+  /* Close menu when a link is clicked */
+
+  mobileMenu
+    .querySelectorAll('a')
+    .forEach(link => {
+
+      link.addEventListener(
+        'click',
+        () => {
+
+          mobileMenu.classList.remove(
+            'open'
+          );
+
+          menuToggle.setAttribute(
+            'aria-expanded',
+            false
+          );
+
+          menuToggle.innerHTML =
+            '<i class="ti ti-menu-2"></i>';
+
+        }
+      );
+
+    });
+
+
+  /* Close menu on resize back to desktop */
+
+  window.addEventListener(
+    'resize',
+    () => {
+
+      if(window.innerWidth > MOBILE_BREAKPOINT){
+
+        mobileMenu.classList.remove(
+          'open'
+        );
+
+        menuToggle.setAttribute(
+          'aria-expanded',
+          false
+        );
+
+        menuToggle.innerHTML =
+          '<i class="ti ti-menu-2"></i>';
+
+      }
+
+    }
+  );
+
+}
+
+
 </script>
 
 
 </body>
 
+
 </html>
-```
