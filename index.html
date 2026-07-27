@@ -1,37 +1,68 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Abhay Tevatia — Portfolio</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<!-- TABLER ICONS -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css"
+>
 
+<!-- FONT -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
+>
+
 
 <style>
 
+/* =====================================================
+   ROOT
+===================================================== */
+
 :root{
+
   --ink:#1B1F3B;
   --dim:#6B7280;
+
   --blue:#3B5EFF;
   --blue-dark:#1E3AA8;
   --blue-soft:#EEF1FF;
+
   --line:#E7E9F5;
+
   --bg:#FFFFFF;
 
-  --radius-sm:8px;
-  --radius-md:14px;
-  --radius-lg:20px;
+  --shadow-sm:
+    0 5px 20px rgba(27,31,59,.06);
 
-  --shadow-sm:0 4px 16px rgba(27,31,59,.06);
-  --shadow-md:0 12px 35px rgba(27,31,59,.10);
-  --shadow-lg:0 22px 60px rgba(27,31,59,.14);
+  --shadow-md:
+    0 15px 40px rgba(27,31,59,.10);
 
-  --transition:.35s cubic-bezier(.2,.8,.2,1);
+  --shadow-lg:
+    0 25px 60px rgba(27,31,59,.14);
+
+  --ease:
+    cubic-bezier(.2,.8,.2,1);
+
 }
+
+
+/* =====================================================
+   RESET
+===================================================== */
 
 *{
   box-sizing:border-box;
@@ -41,1879 +72,2113 @@
 
 html{
   scroll-behavior:smooth;
-  scroll-padding-top:90px;
 }
 
 body{
+
+  margin:0;
+
   background:var(--bg);
+
   color:var(--ink);
-  font-family:'Manrope',sans-serif;
+
+  font-family:
+    'Manrope',
+    sans-serif;
+
   line-height:1.6;
+
   overflow-x:hidden;
+
 }
 
-body.menu-open{
-  overflow:hidden;
-}
 
-a{
-  color:inherit;
-}
+/* =====================================================
+   FIXED CANVAS
 
-button,
-a{
-  -webkit-tap-highlight-color:transparent;
-}
+   IMPORTANT:
 
-button:focus-visible,
-a:focus-visible{
-  outline:3px solid rgba(59,94,255,.3);
-  outline-offset:4px;
-}
+   The website ALWAYS stays 1240px wide.
 
-/* =========================
-   SCROLL PROGRESS
-========================= */
+   We do NOT use responsive flex-direction changes.
 
-.scroll-progress{
-  position:fixed;
-  top:0;
-  left:0;
-  width:0%;
-  height:3px;
-  background:var(--blue);
-  z-index:9999;
-  transition:width:.08s linear;
-}
+   We simply scale the COMPLETE website.
 
-/* =========================
-   PAGE CONTAINER
-========================= */
+===================================================== */
 
 #stage{
-  width:100%;
+
+  width:1240px;
+
   position:relative;
+
+  transform-origin:
+    top left;
+
 }
+
+
+/* =====================================================
+   MAIN WRAPPER
+===================================================== */
 
 .wrap{
+
   width:100%;
+
   max-width:1240px;
+
   margin:0 auto;
-  padding:0 50px;
+
+  padding:
+    0 50px;
+
 }
 
-/* =========================
+
+/* =====================================================
+   SCROLL PROGRESS
+===================================================== */
+
+.scroll-progress{
+
+  position:fixed;
+
+  top:0;
+
+  left:0;
+
+  width:0%;
+
+  height:3px;
+
+  background:var(--blue);
+
+  z-index:99999;
+
+}
+
+
+/* =====================================================
    NAVIGATION
-========================= */
+===================================================== */
 
 .nav-wrapper{
+
   position:sticky;
+
   top:0;
+
   z-index:1000;
-  transition:var(--transition);
+
+  transition:
+    background .3s ease,
+    box-shadow .3s ease;
+
 }
 
-nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  min-height:86px;
-  transition:var(--transition);
-}
 
 .nav-wrapper.scrolled{
-  background:rgba(255,255,255,.88);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-  box-shadow:0 5px 25px rgba(27,31,59,.06);
+
+  background:
+    rgba(255,255,255,.92);
+
+  backdrop-filter:
+    blur(15px);
+
+  -webkit-backdrop-filter:
+    blur(15px);
+
+  box-shadow:
+    0 5px 25px
+    rgba(27,31,59,.07);
+
 }
+
+
+nav{
+
+  height:86px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:
+    space-between;
+
+}
+
 
 .logo{
+
   position:relative;
-  font-weight:800;
-  font-size:19px;
+
   color:var(--ink);
+
   text-decoration:none;
+
+  font-size:19px;
+
+  font-weight:800;
+
   letter-spacing:-.4px;
+
 }
+
 
 .logo::after{
+
   content:"";
+
   position:absolute;
+
   left:0;
-  bottom:-4px;
+
+  bottom:-5px;
+
   width:0;
+
   height:2px;
+
+  border-radius:5px;
+
   background:var(--blue);
-  transition:var(--transition);
+
+  transition:
+    width .3s ease;
+
 }
+
 
 .logo:hover::after{
+
   width:100%;
+
 }
+
+
+/* NAV LINKS */
 
 .navlinks{
+
   display:flex;
+
   align-items:center;
+
   gap:34px;
+
   font-size:14px;
+
   font-weight:600;
+
 }
+
 
 .navlinks a{
+
   position:relative;
-  color:var(--ink);
-  text-decoration:none;
+
   padding:8px 0;
+
+  color:var(--ink);
+
+  text-decoration:none;
+
+  transition:
+    color .3s ease;
+
 }
+
 
 .navlinks a::after{
+
   content:"";
+
   position:absolute;
+
   left:50%;
+
   bottom:0;
+
   width:0;
+
   height:2px;
-  border-radius:10px;
+
+  border-radius:5px;
+
   background:var(--blue);
-  transform:translateX(-50%);
-  transition:var(--transition);
+
+  transform:
+    translateX(-50%);
+
+  transition:
+    width .3s ease;
+
 }
 
-.navlinks a:hover,
-.navlinks a.active{
+
+.navlinks a:hover{
+
   color:var(--blue);
+
 }
 
-.navlinks a:hover::after,
-.navlinks a.active::after{
+
+.navlinks a:hover::after{
+
   width:100%;
+
 }
+
+
+/* RESUME BUTTON */
 
 .btn-resume{
-  position:relative;
-  overflow:hidden;
-  background:var(--blue);
-  color:#fff;
-  font-weight:700;
-  font-size:14px;
-  padding:11px 22px;
-  border-radius:8px;
-  text-decoration:none;
+
   display:inline-flex;
+
   align-items:center;
+
   gap:8px;
-  box-shadow:0 7px 20px rgba(59,94,255,.18);
-  transition:var(--transition);
+
+  padding:
+    11px 22px;
+
+  border-radius:8px;
+
+  background:var(--blue);
+
+  color:#fff;
+
+  text-decoration:none;
+
+  font-size:14px;
+
+  font-weight:700;
+
+  box-shadow:
+    0 8px 22px
+    rgba(59,94,255,.18);
+
+  transition:
+    transform .3s var(--ease),
+    background .3s ease,
+    box-shadow .3s ease;
+
 }
 
-.btn-resume::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-100%;
-  width:100%;
-  height:100%;
-  background:rgba(255,255,255,.16);
-  transform:skewX(-20deg);
-  transition:.5s;
-}
 
 .btn-resume:hover{
-  transform:translateY(-3px);
-  background:var(--blue-dark);
-  box-shadow:0 12px 28px rgba(59,94,255,.25);
+
+  transform:
+    translateY(-3px);
+
+  background:
+    var(--blue-dark);
+
+  box-shadow:
+    0 14px 30px
+    rgba(59,94,255,.25);
+
 }
 
-.btn-resume:hover::before{
-  left:100%;
-}
 
 .btn-resume i{
-  transition:transform .3s ease;
+
+  transition:
+    transform .3s ease;
+
 }
+
 
 .btn-resume:hover i{
-  transform:translateY(2px);
+
+  transform:
+    translateY(2px);
+
 }
 
-/* MOBILE MENU BUTTON */
 
-.menu-toggle{
-  display:none;
-  width:44px;
-  height:44px;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:#fff;
-  color:var(--ink);
-  cursor:pointer;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  transition:var(--transition);
-}
-
-.menu-toggle:hover{
-  background:var(--blue-soft);
-  color:var(--blue);
-  transform:translateY(-2px);
-}
-
-/* =========================
+/* =====================================================
    HERO
-========================= */
+
+   IMPORTANT:
+
+   ALWAYS ROW.
+
+   NEVER COLUMN.
+
+===================================================== */
 
 .hero{
+
   position:relative;
+
   display:flex;
+
+  flex-direction:row !important;
+
   align-items:center;
+
   gap:40px;
-  min-height:calc(100vh - 86px);
-  padding:50px 0 70px;
+
+  height:520px;
+
+  padding:
+    40px 0;
+
 }
+
+
+/* HERO GLOW */
 
 .hero-glow{
+
   position:absolute;
+
   left:-80px;
+
   top:-60px;
+
   width:640px;
+
   height:520px;
-  background:radial-gradient(
-    circle at 30% 30%,
-    var(--blue-soft) 0%,
-    rgba(238,241,255,0) 70%
-  );
+
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      var(--blue-soft) 0%,
+      rgba(238,241,255,0) 70%
+    );
+
   z-index:0;
+
   pointer-events:none;
+
 }
+
+
+/* HERO TEXT */
 
 .hero-text{
-  flex:0 0 46%;
+
+  flex:
+    0 0 46%;
+
+  width:
+    46%;
+
+  min-width:
+    0;
+
   position:relative;
-  z-index:1;
-  animation:heroTextIn .8s ease both;
+
+  z-index:2;
+
 }
+
 
 .hero-text h1{
-  font-size:clamp(34px,4vw,52px);
+
+  font-size:40px;
+
   font-weight:800;
-  line-height:1.2;
-  letter-spacing:-1.4px;
+
+  line-height:1.25;
+
+  letter-spacing:-.7px;
+
 }
+
 
 .hero-text p{
+
   margin-top:18px;
-  font-size:15px;
+
+  max-width:420px;
+
   color:var(--dim);
-  max-width:450px;
+
+  font-size:15px;
+
   line-height:1.8;
+
 }
+
+
+/* =====================================================
+   HERO SVG
+
+   SVG FILE LOCATION:
+
+   /images/hero.svg
+
+===================================================== */
 
 .hero-visual{
-  flex:0 0 54%;
-  position:relative;
-  z-index:1;
+
+  flex:
+    0 0 54%;
+
+  width:
+    54%;
+
+  height:
+    420px;
+
   display:flex;
+
+  align-items:center;
+
   justify-content:center;
-  animation:heroVisualIn 1s .15s ease both;
+
+  position:relative;
+
+  z-index:2;
+
 }
 
-.hero-visual svg{
-  max-width:100%;
-  height:auto;
-  transition:transform .8s cubic-bezier(.2,.8,.2,1);
+
+.hero-visual img{
+
+  display:block;
+
+  width:480px;
+
+  height:420px;
+
+  object-fit:contain;
+
+  transition:
+    transform .6s var(--ease);
+
 }
 
-.hero-visual:hover svg{
-  transform:translateY(-8px) scale(1.015);
+
+.hero-visual:hover img{
+
+  transform:
+    translateY(-7px)
+    scale(1.015);
+
 }
 
-/* =========================
+
+/* =====================================================
    GENERAL SECTIONS
-========================= */
+===================================================== */
 
 section{
-  position:relative;
-  padding:90px 0;
+
+  padding:
+    80px 0;
+
 }
 
-section:nth-of-type(even){
-  background:linear-gradient(
-    180deg,
-    rgba(238,241,255,.20),
-    rgba(255,255,255,0)
-  );
-}
 
 .section-head{
+
   text-align:center;
-  margin-bottom:50px;
+
+  margin-bottom:45px;
+
 }
+
 
 .eyebrow{
-  font-size:12px;
-  font-weight:700;
+
+  margin-bottom:8px;
+
   color:var(--blue);
+
+  font-size:12px;
+
+  font-weight:700;
+
   text-transform:uppercase;
-  letter-spacing:1px;
-  margin-bottom:9px;
+
+  letter-spacing:.8px;
+
 }
+
 
 h2{
-  font-size:32px;
+
+  font-size:28px;
+
   font-weight:800;
-  letter-spacing:-.7px;
+
+  letter-spacing:-.5px;
+
 }
 
-/* =========================
+
+/* =====================================================
    SKILLS
-========================= */
+
+   ALWAYS 3 COLUMNS
+
+===================================================== */
 
 .skills-grid{
+
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px;
+
+  grid-template-columns:
+    repeat(3,1fr) !important;
+
+  gap:
+    30px;
+
 }
+
 
 .skill-card{
+
   position:relative;
+
   text-align:center;
-  padding:32px 24px;
-  border:1px solid transparent;
-  border-radius:18px;
-  background:rgba(255,255,255,.7);
-  transition:var(--transition);
-  overflow:hidden;
+
+  padding:
+    30px 20px;
+
+  border:
+    1px solid transparent;
+
+  border-radius:
+    18px;
+
+  transition:
+    transform .4s var(--ease),
+    box-shadow .4s ease,
+    border-color .4s ease;
+
 }
 
-.skill-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    135deg,
-    rgba(238,241,255,.8),
-    transparent 55%
-  );
-  opacity:0;
-  transition:var(--transition);
-  pointer-events:none;
-}
 
 .skill-card:hover{
-  transform:translateY(-8px);
-  border-color:var(--line);
-  box-shadow:var(--shadow-md);
+
+  transform:
+    translateY(-8px);
+
+  border-color:
+    var(--line);
+
+  box-shadow:
+    var(--shadow-md);
+
 }
 
-.skill-card:hover::before{
-  opacity:1;
-}
 
 .skill-icon{
-  position:relative;
-  z-index:1;
-  width:58px;
-  height:58px;
-  margin:0 auto 18px;
-  border-radius:16px;
-  background:var(--blue-soft);
+
+  width:56px;
+
+  height:56px;
+
+  margin:
+    0 auto 16px;
+
+  border-radius:
+    15px;
+
+  background:
+    var(--blue-soft);
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
-  transition:var(--transition);
+
+  transition:
+    transform .35s ease,
+    background .35s ease;
+
 }
+
 
 .skill-icon i{
-  font-size:27px;
-  color:var(--blue);
-  transition:var(--transition);
+
+  color:
+    var(--blue);
+
+  font-size:
+    26px;
+
+  transition:
+    color .35s ease;
+
 }
 
-.skill-card:hover .skill-icon{
-  background:var(--blue);
-  transform:rotate(-5deg) scale(1.08);
-  box-shadow:0 10px 25px rgba(59,94,255,.20);
+
+.skill-card:hover
+.skill-icon{
+
+  background:
+    var(--blue);
+
+  transform:
+    rotate(-5deg)
+    scale(1.08);
+
 }
 
-.skill-card:hover .skill-icon i{
+
+.skill-card:hover
+.skill-icon i{
+
   color:#fff;
-  transform:scale(1.08);
+
 }
+
 
 .skill-name{
-  position:relative;
-  z-index:1;
-  font-weight:700;
+
+  margin-bottom:6px;
+
   font-size:16px;
-  margin-bottom:7px;
+
+  font-weight:700;
+
 }
+
 
 .skill-desc{
-  position:relative;
-  z-index:1;
-  font-size:13px;
-  color:var(--dim);
+
   max-width:260px;
+
   margin:0 auto;
-  line-height:1.7;
+
+  color:var(--dim);
+
+  font-size:13px;
+
 }
 
-/* =========================
-   PROJECT FILTERS
-========================= */
+
+/* =====================================================
+   FILTER BUTTONS
+===================================================== */
 
 .filter-row{
+
   display:flex;
+
   justify-content:center;
+
   gap:10px;
-  margin-bottom:42px;
-  flex-wrap:wrap;
+
+  margin-bottom:40px;
+
 }
+
 
 .filter-btn{
-  position:relative;
-  border:1.5px solid var(--line);
+
+  border:
+    1.5px solid var(--line);
+
   background:#fff;
+
   color:var(--ink);
+
   font-size:13px;
+
   font-weight:700;
-  padding:9px 18px;
+
+  padding:
+    9px 18px;
+
   border-radius:20px;
+
   cursor:pointer;
-  transition:var(--transition);
+
+  transition:
+    transform .3s ease,
+    background .3s ease,
+    color .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
+
 }
+
 
 .filter-btn:hover{
-  border-color:var(--blue);
-  color:var(--blue);
-  transform:translateY(-2px);
-  box-shadow:var(--shadow-sm);
+
+  transform:
+    translateY(-2px);
+
+  border-color:
+    var(--blue);
+
+  color:
+    var(--blue);
+
+  box-shadow:
+    var(--shadow-sm);
+
 }
+
 
 .filter-btn.active{
-  background:var(--blue);
-  border-color:var(--blue);
+
+  background:
+    var(--blue);
+
+  border-color:
+    var(--blue);
+
   color:#fff;
-  box-shadow:0 8px 22px rgba(59,94,255,.20);
+
+  box-shadow:
+    0 8px 22px
+    rgba(59,94,255,.20);
+
 }
 
-/* =========================
-   WORK CARDS
-========================= */
+
+/* =====================================================
+   WORK
+
+   ALWAYS 3 COLUMNS
+
+===================================================== */
 
 .work-grid{
+
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
+
+  grid-template-columns:
+    repeat(3,1fr) !important;
+
+  gap:
+    22px;
+
 }
+
 
 .work-card{
-  position:relative;
-  border:1.5px solid var(--line);
-  border-radius:18px;
+
+  border:
+    1.5px solid var(--line);
+
+  border-radius:
+    16px;
+
   overflow:hidden;
+
   background:#fff;
+
   transition:
-    transform .45s cubic-bezier(.2,.8,.2,1),
-    box-shadow .45s ease,
+    transform .4s var(--ease),
+    box-shadow .4s ease,
     opacity .3s ease;
+
 }
+
 
 .work-card:hover{
-  transform:translateY(-9px);
-  box-shadow:var(--shadow-lg);
+
+  transform:
+    translateY(-9px);
+
+  box-shadow:
+    var(--shadow-lg);
+
 }
+
 
 .work-card.hidden{
+
   opacity:0;
-  transform:scale(.94);
-  pointer-events:none;
+
+  transform:
+    scale(.94);
+
 }
+
 
 .work-thumb{
-  position:relative;
-  height:150px;
-  background:var(--blue-soft);
+
+  height:120px;
+
+  background:
+    var(--blue-soft);
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   overflow:hidden;
+
 }
 
-.work-thumb::before{
-  content:"";
-  position:absolute;
-  width:130px;
-  height:130px;
-  border-radius:50%;
-  border:1px solid rgba(59,94,255,.12);
-  transition:var(--transition);
-}
-
-.work-thumb::after{
-  content:"";
-  position:absolute;
-  width:200px;
-  height:200px;
-  border-radius:50%;
-  border:1px dashed rgba(59,94,255,.10);
-  transition:var(--transition);
-}
 
 .work-thumb i{
-  position:relative;
-  z-index:2;
-  font-size:34px;
-  color:var(--blue);
-  transition:var(--transition);
+
+  font-size:30px;
+
+  color:
+    var(--blue);
+
+  transition:
+    transform .4s ease;
+
 }
 
-.work-card:hover .work-thumb::before{
-  transform:scale(1.35);
+
+.work-card:hover
+.work-thumb i{
+
+  transform:
+    scale(1.2)
+    rotate(-5deg);
+
 }
 
-.work-card:hover .work-thumb::after{
-  transform:scale(1.15) rotate(20deg);
-}
-
-.work-card:hover .work-thumb i{
-  transform:scale(1.15) rotate(-5deg);
-}
 
 .work-body{
-  padding:22px;
+
+  padding:
+    20px;
+
 }
+
 
 .work-title{
-  font-weight:700;
+
   font-size:15px;
-  transition:color .3s ease;
+
+  font-weight:700;
+
+  transition:
+    color .3s ease;
+
 }
 
-.work-card:hover .work-title{
-  color:var(--blue);
+
+.work-card:hover
+.work-title{
+
+  color:
+    var(--blue);
+
 }
+
 
 .work-desc{
-  font-size:13px;
-  color:var(--dim);
+
   margin-top:8px;
-  line-height:1.7;
+
+  color:
+    var(--dim);
+
+  font-size:13px;
+
 }
+
 
 .tag-row{
+
   display:flex;
+
   gap:6px;
-  margin-top:18px;
-  flex-wrap:wrap;
+
+  margin-top:16px;
+
 }
+
 
 .tag{
+
+  padding:
+    4px 10px;
+
+  border-radius:
+    12px;
+
+  background:
+    var(--blue-soft);
+
+  color:
+    var(--blue);
+
   font-size:11px;
+
   font-weight:700;
-  background:var(--blue-soft);
-  color:var(--blue);
-  padding:5px 10px;
-  border-radius:12px;
-  transition:var(--transition);
+
 }
 
-.work-card:hover .tag{
-  transform:translateY(-2px);
-}
 
-/* =========================
-   SCROLL REVEAL
-========================= */
-
-.reveal{
-  opacity:0;
-  transform:translateY(35px);
-  transition:
-    opacity .7s ease,
-    transform .7s cubic-bezier(.2,.8,.2,1);
-}
-
-.reveal.visible{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* =========================
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 footer{
-  padding:45px 0;
+
+  padding:
+    36px 0;
+
   text-align:center;
-  color:var(--dim);
+
+  color:
+    var(--dim);
+
   font-size:13px;
-  border-top:1px solid var(--line);
+
+  border-top:
+    1px solid var(--line);
+
 }
+
 
 footer a{
-  color:var(--dim);
+
+  color:
+    var(--dim);
+
   text-decoration:none;
-  transition:color .3s ease;
+
+  transition:
+    color .3s ease;
+
 }
+
 
 footer a:hover{
-  color:var(--blue);
+
+  color:
+    var(--blue);
+
 }
 
-/* =========================
+
+/* =====================================================
    SCROLL TO TOP
-========================= */
+===================================================== */
 
 .scroll-top{
+
   position:fixed;
+
   right:25px;
+
   bottom:25px;
+
   width:46px;
+
   height:46px;
+
   border:none;
+
   border-radius:50%;
-  background:var(--blue);
+
+  background:
+    var(--blue);
+
   color:#fff;
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   font-size:20px;
+
   cursor:pointer;
-  z-index:900;
+
   opacity:0;
+
   visibility:hidden;
-  transform:translateY(15px);
-  box-shadow:0 10px 25px rgba(59,94,255,.25);
-  transition:var(--transition);
+
+  transform:
+    translateY(15px);
+
+  z-index:9999;
+
+  box-shadow:
+    0 10px 25px
+    rgba(59,94,255,.25);
+
+  transition:
+    opacity .3s ease,
+    visibility .3s ease,
+    transform .3s ease,
+    background .3s ease;
+
 }
+
 
 .scroll-top.show{
+
   opacity:1;
+
   visibility:visible;
-  transform:translateY(0);
+
+  transform:
+    translateY(0);
+
 }
+
 
 .scroll-top:hover{
-  background:var(--blue-dark);
-  transform:translateY(-5px);
-}
 
-/* =========================
-   ANIMATIONS
-========================= */
+  background:
+    var(--blue-dark);
 
-@keyframes heroTextIn{
-  from{
-    opacity:0;
-    transform:translateX(-30px);
-  }
-  to{
-    opacity:1;
-    transform:translateX(0);
-  }
-}
-
-@keyframes heroVisualIn{
-  from{
-    opacity:0;
-    transform:translateX(30px) scale(.96);
-  }
-  to{
-    opacity:1;
-    transform:translateX(0) scale(1);
-  }
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:900px){
-
-  .wrap{
-    padding:0 28px;
-  }
-
-  .hero{
-    gap:20px;
-  }
-
-  .hero-text{
-    flex:0 0 50%;
-  }
-
-  .hero-visual{
-    flex:0 0 50%;
-  }
-
-  .hero-visual svg{
-    width:100%;
-  }
-
-  .skills-grid,
-  .work-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
+  transform:
+    translateY(-5px);
 
 }
 
-@media(max-width:700px){
 
-  .wrap{
-    padding:0 20px;
-  }
+/* =====================================================
+   IMPORTANT:
 
-  nav{
-    min-height:72px;
-  }
+   NO RESPONSIVE LAYOUT CHANGES
 
-  .navlinks{
-    position:fixed;
-    top:72px;
-    left:20px;
-    right:20px;
-    padding:20px;
-    background:rgba(255,255,255,.96);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-    border:1px solid var(--line);
-    border-radius:16px;
-    box-shadow:var(--shadow-lg);
+   We intentionally do NOT have:
 
-    flex-direction:column;
-    align-items:stretch;
-    gap:4px;
+   flex-direction:column
 
-    opacity:0;
-    visibility:hidden;
-    transform:translateY(-10px);
-    transition:var(--transition);
-  }
+   grid-template-columns:1fr
 
-  .navlinks.open{
-    opacity:1;
-    visibility:visible;
-    transform:translateY(0);
-  }
+   This means:
 
-  .navlinks a{
-    padding:12px 10px;
-    border-radius:8px;
-  }
+   HERO = always left/right
 
-  .navlinks a:hover{
-    background:var(--blue-soft);
-  }
+   SKILLS = always 3 columns
 
-  .navlinks a::after{
-    display:none;
-  }
+   WORK = always 3 columns
 
-  .btn-resume{
-    display:none;
-  }
-
-  .menu-toggle{
-    display:flex;
-  }
-
-  .hero{
-    flex-direction:column;
-    text-align:center;
-    min-height:auto;
-    padding:70px 0 80px;
-  }
-
-  .hero-text{
-    flex:100%;
-  }
-
-  .hero-text p{
-    margin-left:auto;
-    margin-right:auto;
-  }
-
-  .hero-visual{
-    flex:100%;
-    width:100%;
-    margin-top:15px;
-  }
-
-  .hero-visual svg{
-    max-width:500px;
-  }
-
-  section{
-    padding:75px 0;
-  }
-
-  .skills-grid,
-  .work-grid{
-    grid-template-columns:1fr;
-  }
-
-  .skill-card{
-    padding:30px 20px;
-  }
-
-}
-
-@media(max-width:450px){
-
-  .hero-text h1{
-    font-size:32px;
-  }
-
-  h2{
-    font-size:28px;
-  }
-
-  .filter-row{
-    gap:7px;
-  }
-
-  .filter-btn{
-    padding:8px 14px;
-  }
-
-  .scroll-top{
-    right:18px;
-    bottom:18px;
-  }
-
-}
-
-/* =========================
-   REDUCED MOTION
-========================= */
-
-@media(prefers-reduced-motion:reduce){
-
-  html{
-    scroll-behavior:auto;
-  }
-
-  *,
-  *::before,
-  *::after{
-    animation-duration:.01ms !important;
-    animation-iteration-count:1 !important;
-    transition-duration:.01ms !important;
-  }
-
-}
+===================================================== */
 
 </style>
+
 </head>
 
 
 <body>
 
-<!-- SCROLL PROGRESS -->
-<div class="scroll-progress" id="scrollProgress"></div>
 
+<!-- SCROLL PROGRESS -->
+
+<div
+  class="scroll-progress"
+  id="scrollProgress">
+</div>
+
+
+
+<!-- =====================================================
+     FIXED WEBSITE CANVAS
+===================================================== -->
 
 <div id="stage">
 
-  <!-- =========================
-       NAVIGATION
-  ========================== -->
 
-  <div class="nav-wrapper" id="navWrapper">
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
 
-    <div class="wrap">
+<div
+  class="nav-wrapper"
+  id="navWrapper"
+>
 
-      <nav>
+<div class="wrap">
 
-        <a href="#about" class="logo">
-          Abhay Tevatia
-        </a>
+<nav>
 
-        <div class="navlinks" id="navLinks">
-          <a href="#about" class="nav-link active">About</a>
-          <a href="#skills" class="nav-link">Skills</a>
-          <a href="#work" class="nav-link">Work</a>
-        </div>
 
-        <a class="btn-resume" href="#">
-          <i class="ti ti-download"></i>
-          Resume
-        </a>
+<a
+  href="#about"
+  class="logo"
+>
+  Abhay Tevatia
+</a>
 
-        <button
-          class="menu-toggle"
-          id="menuToggle"
-          aria-label="Open navigation menu"
-          aria-expanded="false"
-        >
-          <i class="ti ti-menu-2"></i>
-        </button>
 
-      </nav>
+<div class="navlinks">
 
-    </div>
+<a href="#about">
+  About
+</a>
 
-  </div>
+<a href="#skills">
+  Skills
+</a>
 
-
-  <!-- =========================
-       HERO
-  ========================== -->
-
-  <div class="wrap">
-
-    <div class="hero" id="about">
-
-      <div class="hero-glow"></div>
-
-      <div class="hero-text">
-
-        <h1>
-          A simple, clear way to see your data
-        </h1>
-
-        <p>
-          Want dashboards that answer questions before anyone has to ask twice?
-          I build Power BI, Tableau and Python-driven reporting that turns raw
-          spreadsheets into a single source of truth.
-        </p>
-
-      </div>
-
-
-      <div class="hero-visual">
-
-        <svg
-          width="480"
-          height="420"
-          viewBox="0 0 480 420"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-
-          <defs>
-
-            <linearGradient id="orb" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#4E73FF"/>
-              <stop offset="100%" stop-color="#16225C"/>
-            </linearGradient>
-
-            <linearGradient id="orbShine" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#8CA6FF"/>
-              <stop offset="100%" stop-color="#4E73FF"/>
-            </linearGradient>
-
-          </defs>
-
-          <circle
-            cx="150"
-            cy="180"
-            r="118"
-            fill="none"
-            stroke="#D7DEFB"
-            stroke-width="2"
-            stroke-dasharray="1 10"
-            stroke-linecap="round"
-          />
-
-          <circle
-            cx="60"
-            cy="90"
-            r="16"
-            fill="#fff"
-            stroke="#D7DEFB"
-            stroke-width="2"
-          />
-
-          <path
-            d="M60 82 L60 90 L66 94"
-            stroke="#9AA7D9"
-            stroke-width="2"
-            stroke-linecap="round"
-            fill="none"
-          />
-
-          <ellipse
-            cx="50"
-            cy="340"
-            rx="26"
-            ry="10"
-            fill="#DCE3FB"
-          />
-
-          <path
-            d="M38 340 L44 305 M50 340 L50 295 M62 340 L56 308"
-            stroke="#3B5EFF"
-            stroke-width="6"
-            fill="none"
-            stroke-linecap="round"
-          />
-
-          <ellipse
-            cx="215"
-            cy="368"
-            rx="115"
-            ry="14"
-            fill="#EEF1FF"
-          />
-
-          <path
-            d="M215 150 C290 150,335 210,330 270
-            C325 330,270 365,210 365
-            C150 365,100 330,100 270
-            C100 205,145 150,215 150 Z"
-            fill="url(#orb)"
-          />
-
-          <path
-            d="M120 220 C130 190,165 165,210 160"
-            stroke="url(#orbShine)"
-            stroke-width="10"
-            fill="none"
-            stroke-linecap="round"
-            opacity=".55"
-          />
-
-          <path
-            d="M175 300 C200 312,235 312,265 296
-            L272 316
-            C235 336,195 336,165 318 Z"
-            fill="#3B5EFF"
-          />
-
-          <path
-            d="M175 300 C155 288,145 268,150 248"
-            stroke="#3B5EFF"
-            stroke-width="26"
-            fill="none"
-            stroke-linecap="round"
-          />
-
-          <path
-            d="M265 296 C285 282,292 260,286 240"
-            stroke="#2947D6"
-            stroke-width="24"
-            fill="none"
-            stroke-linecap="round"
-          />
-
-          <path
-            d="M170 210 C165 240,168 268,180 288
-            C200 300,235 300,255 286
-            C264 262,264 234,256 210
-            C235 196,195 196,170 210 Z"
-            fill="#FFFFFF"
-          />
-
-          <path
-            d="M205 210 L213 226 L221 210"
-            fill="none"
-            stroke="#C7CEEC"
-            stroke-width="3"
-          />
-
-          <path
-            d="M188 250 L246 250 L240 268 L194 268 Z"
-            fill="#16225C"
-          />
-
-          <path
-            d="M192 250 L200 222 L234 222 L242 250"
-            fill="none"
-            stroke="#16225C"
-            stroke-width="4"
-          />
-
-          <path
-            d="M172 220 C158 232,150 246,150 258"
-            stroke="#FFFFFF"
-            stroke-width="14"
-            fill="none"
-            stroke-linecap="round"
-          />
-
-          <path
-            d="M254 218 C266 230,272 244,270 256"
-            stroke="#FFFFFF"
-            stroke-width="14"
-            fill="none"
-            stroke-linecap="round"
-          />
-
-          <circle
-            cx="213"
-            cy="188"
-            r="30"
-            fill="#16225C"
-          />
-
-          <path
-            d="M188 182 C186 168,196 156,213 156
-            C230 156,240 168,238 182"
-            fill="#0E163F"
-          />
-
-          <path
-            d="M186 190 C182 200,186 210,196 214"
-            fill="#0E163F"
-          />
-
-          <rect
-            x="196"
-            y="188"
-            width="34"
-            height="8"
-            rx="4"
-            fill="none"
-            stroke="#8CA6FF"
-            stroke-width="2.5"
-          />
-
-          <circle
-            cx="204"
-            cy="192"
-            r="4"
-            fill="none"
-            stroke="#8CA6FF"
-            stroke-width="2"
-          />
-
-          <circle
-            cx="222"
-            cy="192"
-            r="4"
-            fill="none"
-            stroke="#8CA6FF"
-            stroke-width="2"
-          />
-
-          <path
-            d="M400 380 L400 300"
-            stroke="#C7CEEC"
-            stroke-width="4"
-          />
-
-          <ellipse
-            cx="400"
-            cy="382"
-            rx="22"
-            ry="5"
-            fill="#DCE3FB"
-          />
-
-          <path
-            d="M370 300 L430 300 L424 260 L376 260 Z"
-            fill="#16225C"
-          />
-
-          <rect
-            x="382"
-            y="266"
-            width="36"
-            height="24"
-            rx="2"
-            fill="#4E73FF"
-          />
-
-          <path
-            d="M388 286 L388 276
-            M396 286 L396 270
-            M404 286 L404 280
-            M412 286 L412 273"
-            stroke="#fff"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-
-          <rect
-            x="330"
-            y="190"
-            width="46"
-            height="60"
-            rx="4"
-            fill="#fff"
-            stroke="#D7DEFB"
-            stroke-width="2"
-            transform="rotate(-8 353 220)"
-          />
-
-          <rect
-            x="352"
-            y="210"
-            width="46"
-            height="60"
-            rx="4"
-            fill="#fff"
-            stroke="#D7DEFB"
-            stroke-width="2"
-            transform="rotate(6 375 240)"
-          />
-
-          <path
-            d="M300 200 L330 175 L322 200 Z"
-            fill="#FF9F43"
-          />
-
-        </svg>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================
-       SKILLS
-  ========================== -->
-
-  <section id="skills">
-
-    <div class="wrap">
-
-      <div class="section-head reveal">
-        <div class="eyebrow">What I work with</div>
-        <h2>Skills</h2>
-      </div>
-
-      <div class="skills-grid">
-
-        <div class="skill-card reveal">
-          <div class="skill-icon">
-            <i class="ti ti-chart-bar"></i>
-          </div>
-          <div class="skill-name">Power BI</div>
-          <div class="skill-desc">
-            Dashboards, DAX measures and data models.
-          </div>
-        </div>
-
-        <div class="skill-card reveal">
-          <div class="skill-icon">
-            <i class="ti ti-chart-dots"></i>
-          </div>
-          <div class="skill-name">Tableau</div>
-          <div class="skill-desc">
-            Interactive workbooks and visual storytelling.
-          </div>
-        </div>
-
-        <div class="skill-card reveal">
-          <div class="skill-icon">
-            <i class="ti ti-database"></i>
-          </div>
-          <div class="skill-name">SQL</div>
-          <div class="skill-desc">
-            Querying, joins and structured data extraction.
-          </div>
-        </div>
-
-        <div class="skill-card reveal">
-          <div class="skill-icon">
-            <i class="ti ti-brand-python"></i>
-          </div>
-          <div class="skill-name">Python</div>
-          <div class="skill-desc">
-            Pandas and NumPy for cleaning and analysis.
-          </div>
-        </div>
-
-        <div class="skill-card reveal">
-          <div class="skill-icon">
-            <i class="ti ti-table"></i>
-          </div>
-          <div class="skill-name">Excel</div>
-          <div class="skill-desc">
-            Advanced formulas, Power Query and pivots.
-          </div>
-        </div>
-
-        <div class="skill-card reveal">
-          <div class="skill-icon">
-            <i class="ti ti-robot"></i>
-          </div>
-          <div class="skill-name">Automation</div>
-          <div class="skill-desc">
-            Scheduled refresh pipelines and scripts.
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       WORK
-  ========================== -->
-
-  <section id="work">
-
-    <div class="wrap">
-
-      <div class="section-head reveal">
-        <div class="eyebrow">Selected projects</div>
-        <h2>Work</h2>
-      </div>
-
-
-      <div class="filter-row reveal" id="filterRow">
-
-        <button class="filter-btn active" data-filter="all">
-          All
-        </button>
-
-        <button class="filter-btn" data-filter="sql">
-          SQL
-        </button>
-
-        <button class="filter-btn" data-filter="powerbi">
-          Power BI
-        </button>
-
-        <button class="filter-btn" data-filter="tableau">
-          Tableau
-        </button>
-
-        <button class="filter-btn" data-filter="python">
-          Python
-        </button>
-
-        <button class="filter-btn" data-filter="excel">
-          Excel
-        </button>
-
-      </div>
-
-
-      <div class="work-grid" id="workGrid">
-
-        <div class="work-card reveal" data-tags="powerbi sql">
-
-          <div class="work-thumb">
-            <i class="ti ti-chart-bar"></i>
-          </div>
-
-          <div class="work-body">
-
-            <div class="work-title">
-              Cold chain logistics dashboard
-            </div>
-
-            <div class="work-desc">
-              4-page Power BI build covering warehouse ops and quality KPIs.
-            </div>
-
-            <div class="tag-row">
-              <span class="tag">Power BI</span>
-              <span class="tag">SQL</span>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="work-card reveal" data-tags="excel">
-
-          <div class="work-thumb">
-            <i class="ti ti-sun"></i>
-          </div>
-
-          <div class="work-body">
-
-            <div class="work-title">
-              Solar EPC project analysis
-            </div>
-
-            <div class="work-desc">
-              Star schema built from a multi-sheet dataset for cost tracking.
-            </div>
-
-            <div class="tag-row">
-              <span class="tag">Excel</span>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="work-card reveal" data-tags="python excel">
-
-          <div class="work-thumb">
-            <i class="ti ti-refresh"></i>
-          </div>
-
-          <div class="work-body">
-
-            <div class="work-title">
-              Sales performance tracker
-            </div>
-
-            <div class="work-desc">
-              Automated weekly refresh pipeline replacing manual work.
-            </div>
-
-            <div class="tag-row">
-              <span class="tag">Python</span>
-              <span class="tag">Excel</span>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="work-card reveal" data-tags="sql tableau">
-
-          <div class="work-thumb">
-            <i class="ti ti-map"></i>
-          </div>
-
-          <div class="work-body">
-
-            <div class="work-title">
-              Regional demand forecast
-            </div>
-
-            <div class="work-desc">
-              SQL-based model surfaced through an interactive Tableau workbook.
-            </div>
-
-            <div class="tag-row">
-              <span class="tag">SQL</span>
-              <span class="tag">Tableau</span>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="work-card reveal" data-tags="powerbi sql">
-
-          <div class="work-thumb">
-            <i class="ti ti-package"></i>
-          </div>
-
-          <div class="work-body">
-
-            <div class="work-title">
-              Inventory quality tracker
-            </div>
-
-            <div class="work-desc">
-              Compliance and quality KPIs for a cold storage facility.
-            </div>
-
-            <div class="tag-row">
-              <span class="tag">Power BI</span>
-              <span class="tag">SQL</span>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="work-card reveal" data-tags="python excel">
-
-          <div class="work-thumb">
-            <i class="ti ti-file-spreadsheet"></i>
-          </div>
-
-          <div class="work-body">
-
-            <div class="work-title">
-              Budget vs actuals report
-            </div>
-
-            <div class="work-desc">
-              Automated monthly variance report with NumPy checks.
-            </div>
-
-            <div class="tag-row">
-              <span class="tag">Python</span>
-              <span class="tag">Excel</span>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       FOOTER
-  ========================== -->
-
-  <footer>
-
-    <div class="wrap">
-
-      <span>abhay@email.com</span>
-      ·
-      <a href="#">linkedin</a>
-      ·
-      <a href="#">github</a>
-
-    </div>
-
-  </footer>
+<a href="#work">
+  Work
+</a>
 
 </div>
 
 
-<!-- SCROLL TOP -->
+<!-- RESUME FROM ASSETS FOLDER -->
+
+<a
+  class="btn-resume"
+  href="assets/resume.pdf"
+  target="_blank"
+  rel="noopener"
+>
+
+<i class="ti ti-download"></i>
+
+Resume
+
+</a>
+
+
+</nav>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<div class="wrap">
+
+
+<div
+  class="hero"
+  id="about"
+>
+
+
+<div class="hero-glow"></div>
+
+
+<!-- LEFT SIDE -->
+
+<div class="hero-text">
+
+<h1>
+A simple, clear way to see your data
+</h1>
+
+
+<p>
+Want dashboards that answer questions before anyone has to ask twice?
+I build Power BI, Tableau and Python-driven reporting that turns raw
+spreadsheets into a single source of truth.
+</p>
+
+</div>
+
+
+
+<!-- RIGHT SIDE -->
+
+<div class="hero-visual">
+
+<!--
+IMPORTANT:
+
+Your SVG is inside:
+
+images/
+
+So if the file is:
+
+images/hero.svg
+
+use:
+
+images/hero.svg
+
+If your actual filename is different,
+change ONLY the filename below.
+-->
+
+<img
+  src="images/hero.svg"
+  alt="Data analytics illustration"
+>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     SKILLS
+===================================================== -->
+
+<section id="skills">
+
+<div class="wrap">
+
+
+<div class="section-head">
+
+<div class="eyebrow">
+What I work with
+</div>
+
+<h2>
+Skills
+</h2>
+
+</div>
+
+
+
+<div class="skills-grid">
+
+
+<div class="skill-card">
+
+<div class="skill-icon">
+<i class="ti ti-chart-bar"></i>
+</div>
+
+<div class="skill-name">
+Power BI
+</div>
+
+<div class="skill-desc">
+Dashboards, DAX measures and data models.
+</div>
+
+</div>
+
+
+
+<div class="skill-card">
+
+<div class="skill-icon">
+<i class="ti ti-chart-dots"></i>
+</div>
+
+<div class="skill-name">
+Tableau
+</div>
+
+<div class="skill-desc">
+Interactive workbooks and visual storytelling.
+</div>
+
+</div>
+
+
+
+<div class="skill-card">
+
+<div class="skill-icon">
+<i class="ti ti-database"></i>
+</div>
+
+<div class="skill-name">
+SQL
+</div>
+
+<div class="skill-desc">
+Querying, joins and structured data extraction.
+</div>
+
+</div>
+
+
+
+<div class="skill-card">
+
+<div class="skill-icon">
+<i class="ti ti-brand-python"></i>
+</div>
+
+<div class="skill-name">
+Python
+</div>
+
+<div class="skill-desc">
+Pandas and NumPy for cleaning and analysis.
+</div>
+
+</div>
+
+
+
+<div class="skill-card">
+
+<div class="skill-icon">
+<i class="ti ti-table"></i>
+</div>
+
+<div class="skill-name">
+Excel
+</div>
+
+<div class="skill-desc">
+Advanced formulas, Power Query and pivots.
+</div>
+
+</div>
+
+
+
+<div class="skill-card">
+
+<div class="skill-icon">
+<i class="ti ti-robot"></i>
+</div>
+
+<div class="skill-name">
+Automation
+</div>
+
+<div class="skill-desc">
+Scheduled refresh pipelines and scripts.
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WORK
+===================================================== -->
+
+<section id="work">
+
+<div class="wrap">
+
+
+<div class="section-head">
+
+<div class="eyebrow">
+Selected projects
+</div>
+
+<h2>
+Work
+</h2>
+
+</div>
+
+
+
+<!-- FILTERS -->
+
+<div
+  class="filter-row"
+  id="filterRow"
+>
+
+
+<button
+  class="filter-btn active"
+  data-filter="all"
+>
+All
+</button>
+
+
+<button
+  class="filter-btn"
+  data-filter="sql"
+>
+SQL
+</button>
+
+
+<button
+  class="filter-btn"
+  data-filter="powerbi"
+>
+Power BI
+</button>
+
+
+<button
+  class="filter-btn"
+  data-filter="tableau"
+>
+Tableau
+</button>
+
+
+<button
+  class="filter-btn"
+  data-filter="python"
+>
+Python
+</button>
+
+
+<button
+  class="filter-btn"
+  data-filter="excel"
+>
+Excel
+</button>
+
+
+</div>
+
+
+
+<!-- WORK GRID -->
+
+<div
+  class="work-grid"
+  id="workGrid"
+>
+
+
+<!-- CARD 1 -->
+
+<div
+  class="work-card"
+  data-tags="powerbi sql"
+>
+
+<div class="work-thumb">
+<i class="ti ti-chart-bar"></i>
+</div>
+
+
+<div class="work-body">
+
+<div class="work-title">
+Cold chain logistics dashboard
+</div>
+
+<div class="work-desc">
+4-page Power BI build covering warehouse ops and quality KPIs.
+</div>
+
+<div class="tag-row">
+
+<span class="tag">
+Power BI
+</span>
+
+<span class="tag">
+SQL
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- CARD 2 -->
+
+<div
+  class="work-card"
+  data-tags="excel"
+>
+
+<div class="work-thumb">
+<i class="ti ti-sun"></i>
+</div>
+
+
+<div class="work-body">
+
+<div class="work-title">
+Solar EPC project analysis
+</div>
+
+<div class="work-desc">
+Star schema built from a multi-sheet dataset for cost tracking.
+</div>
+
+<div class="tag-row">
+
+<span class="tag">
+Excel
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- CARD 3 -->
+
+<div
+  class="work-card"
+  data-tags="python excel"
+>
+
+<div class="work-thumb">
+<i class="ti ti-refresh"></i>
+</div>
+
+
+<div class="work-body">
+
+<div class="work-title">
+Sales performance tracker
+</div>
+
+<div class="work-desc">
+Automated weekly refresh pipeline replacing manual work.
+</div>
+
+<div class="tag-row">
+
+<span class="tag">
+Python
+</span>
+
+<span class="tag">
+Excel
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- CARD 4 -->
+
+<div
+  class="work-card"
+  data-tags="sql tableau"
+>
+
+<div class="work-thumb">
+<i class="ti ti-map"></i>
+</div>
+
+
+<div class="work-body">
+
+<div class="work-title">
+Regional demand forecast
+</div>
+
+<div class="work-desc">
+SQL-based model surfaced through an interactive Tableau workbook.
+</div>
+
+<div class="tag-row">
+
+<span class="tag">
+SQL
+</span>
+
+<span class="tag">
+Tableau
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- CARD 5 -->
+
+<div
+  class="work-card"
+  data-tags="powerbi sql"
+>
+
+<div class="work-thumb">
+<i class="ti ti-package"></i>
+</div>
+
+
+<div class="work-body">
+
+<div class="work-title">
+Inventory quality tracker
+</div>
+
+<div class="work-desc">
+Compliance and quality KPIs for a cold storage facility.
+</div>
+
+<div class="tag-row">
+
+<span class="tag">
+Power BI
+</span>
+
+<span class="tag">
+SQL
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- CARD 6 -->
+
+<div
+  class="work-card"
+  data-tags="python excel"
+>
+
+<div class="work-thumb">
+<i class="ti ti-file-spreadsheet"></i>
+</div>
+
+
+<div class="work-body">
+
+<div class="work-title">
+Budget vs actuals report
+</div>
+
+<div class="work-desc">
+Automated monthly variance report with NumPy checks.
+</div>
+
+<div class="tag-row">
+
+<span class="tag">
+Python
+</span>
+
+<span class="tag">
+Excel
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+<div class="wrap">
+
+abhay@email.com
+·
+<a href="#">
+linkedin
+</a>
+·
+<a href="#">
+github
+</a>
+
+</div>
+
+</footer>
+
+
+</div>
+<!-- END STAGE -->
+
+
+
+<!-- =====================================================
+     SCROLL TO TOP
+===================================================== -->
 
 <button
   class="scroll-top"
   id="scrollTop"
   aria-label="Scroll to top"
 >
-  <i class="ti ti-arrow-up"></i>
+
+<i class="ti ti-arrow-up"></i>
+
 </button>
+
 
 
 <script>
 
-/* =========================
-   ELEMENTS
-========================= */
 
-const navWrapper = document.getElementById('navWrapper');
-const navLinks = document.getElementById('navLinks');
-const menuToggle = document.getElementById('menuToggle');
-const scrollTop = document.getElementById('scrollTop');
-const scrollProgress = document.getElementById('scrollProgress');
+/* =====================================================
+   FIXED CANVAS SCALING
 
-const navItems = document.querySelectorAll('.nav-link');
-const sections = document.querySelectorAll('section, #about');
+   THIS IS THE MOST IMPORTANT PART.
 
-const filterBtns = document.querySelectorAll('.filter-btn');
-const cards = document.querySelectorAll('.work-card');
+   Desktop:
+   1240px = 100%
 
-const revealElements = document.querySelectorAll('.reveal');
+   Mobile:
+   The SAME 1240px layout is scaled down.
+
+   Nothing changes position.
+
+===================================================== */
 
 
-/* =========================
+const STAGE_WIDTH = 1240;
+
+const stage =
+  document.getElementById('stage');
+
+
+function fitStage(){
+
+  const viewportWidth =
+    window.innerWidth;
+
+
+  /*
+    Scale the entire website.
+
+    If viewport is 1240px or larger:
+    scale = 1
+
+    If viewport is 620px:
+    scale = .5
+
+    Therefore the entire laptop layout
+    remains exactly the same.
+  */
+
+
+  const scale =
+    Math.min(
+      viewportWidth / STAGE_WIDTH,
+      1
+    );
+
+
+  stage.style.transform =
+    `scale(${scale})`;
+
+
+  stage.style.transformOrigin =
+    'top left';
+
+
+  /*
+    Because transform does not affect
+    normal document flow, manually set
+    body dimensions.
+  */
+
+
+  document.body.style.width =
+    `${STAGE_WIDTH * scale}px`;
+
+
+  document.body.style.height =
+    `${stage.scrollHeight * scale}px`;
+
+}
+
+
+/* RUN */
+
+window.addEventListener(
+  'load',
+  fitStage
+);
+
+window.addEventListener(
+  'resize',
+  fitStage
+);
+
+fitStage();
+
+
+
+/* =====================================================
    NAVBAR SCROLL EFFECT
-========================= */
+===================================================== */
+
+
+const navWrapper =
+  document.getElementById(
+    'navWrapper'
+  );
+
 
 function handleScroll(){
 
-  const scrollY = window.scrollY;
+  if(
+    window.scrollY > 30
+  ){
 
-  if(scrollY > 30){
-    navWrapper.classList.add('scrolled');
+    navWrapper.classList.add(
+      'scrolled'
+    );
+
   }else{
-    navWrapper.classList.remove('scrolled');
-  }
 
+    navWrapper.classList.remove(
+      'scrolled'
+    );
 
-  /* SCROLL TO TOP */
-
-  if(scrollY > 500){
-    scrollTop.classList.add('show');
-  }else{
-    scrollTop.classList.remove('show');
   }
 
 
   /* SCROLL PROGRESS */
 
-  const documentHeight =
-    document.documentElement.scrollHeight -
-    document.documentElement.clientHeight;
+  const scrollProgress =
+    document.getElementById(
+      'scrollProgress'
+    );
+
+
+  const scrollHeight =
+    document.documentElement
+      .scrollHeight -
+    document.documentElement
+      .clientHeight;
+
 
   const progress =
-    documentHeight > 0
-    ? (scrollY / documentHeight) * 100
-    : 0;
+    scrollHeight > 0
 
-  scrollProgress.style.width = progress + '%';
+    ?
+
+    (
+      window.scrollY /
+      scrollHeight
+    ) * 100
+
+    :
+
+    0;
 
 
-  /* ACTIVE NAVIGATION */
-
-  let currentSection = '';
-
-  sections.forEach(section => {
-
-    const sectionTop =
-      section.getBoundingClientRect().top;
-
-    if(sectionTop <= 130){
-      currentSection = section.id;
-    }
-
-  });
-
-  navItems.forEach(link => {
-
-    link.classList.remove('active');
-
-    if(link.getAttribute('href') === '#' + currentSection){
-      link.classList.add('active');
-    }
-
-  });
+  scrollProgress.style.width =
+    progress + '%';
 
 }
+
 
 window.addEventListener(
   'scroll',
   handleScroll,
-  {passive:true}
+  {
+    passive:true
+  }
 );
+
 
 handleScroll();
 
 
-/* =========================
-   MOBILE MENU
-========================= */
 
-menuToggle.addEventListener(
-  'click',
-  () => {
+/* =====================================================
+   PROJECT FILTER
+===================================================== */
 
-    const isOpen =
-      navLinks.classList.toggle('open');
 
-    document.body.classList.toggle(
-      'menu-open',
-      isOpen
+const filterButtons =
+  document.querySelectorAll(
+    '.filter-btn'
+  );
+
+
+const workCards =
+  document.querySelectorAll(
+    '.work-card'
+  );
+
+
+filterButtons.forEach(
+  button => {
+
+
+    button.addEventListener(
+      'click',
+      () => {
+
+
+        /* ACTIVE BUTTON */
+
+        filterButtons.forEach(
+          btn => {
+
+            btn.classList.remove(
+              'active'
+            );
+
+          }
+        );
+
+
+        button.classList.add(
+          'active'
+        );
+
+
+        /* FILTER */
+
+        const filter =
+          button.dataset.filter;
+
+
+        workCards.forEach(
+          card => {
+
+
+            const tags =
+              card.dataset.tags
+                .split(' ');
+
+
+            const show =
+              filter === 'all' ||
+              tags.includes(filter);
+
+
+            if(show){
+
+              card.style.display =
+                '';
+
+
+              requestAnimationFrame(
+                () => {
+
+                  card.classList.remove(
+                    'hidden'
+                  );
+
+                }
+              );
+
+            }else{
+
+
+              card.classList.add(
+                'hidden'
+              );
+
+
+              setTimeout(
+                () => {
+
+                  card.style.display =
+                    'none';
+
+                },
+                300
+              );
+
+            }
+
+          }
+        );
+
+      }
     );
-
-    menuToggle.setAttribute(
-      'aria-expanded',
-      isOpen
-    );
-
-    menuToggle.innerHTML =
-      isOpen
-      ? '<i class="ti ti-x"></i>'
-      : '<i class="ti ti-menu-2"></i>';
 
   }
 );
 
 
-/* CLOSE MOBILE MENU
-   WHEN LINK CLICKED
-========================= */
 
-navItems.forEach(link => {
+/* =====================================================
+   SCROLL TO TOP
+===================================================== */
 
-  link.addEventListener(
-    'click',
-    () => {
 
-      navLinks.classList.remove('open');
-
-      document.body.classList.remove(
-        'menu-open'
-      );
-
-      menuToggle.setAttribute(
-        'aria-expanded',
-        'false'
-      );
-
-      menuToggle.innerHTML =
-        '<i class="ti ti-menu-2"></i>';
-
-    }
+const scrollTop =
+  document.getElementById(
+    'scrollTop'
   );
 
-});
+
+window.addEventListener(
+  'scroll',
+  () => {
 
 
-/* =========================
-   SCROLL TOP
-========================= */
+    if(
+      window.scrollY > 500
+    ){
+
+      scrollTop.classList.add(
+        'show'
+      );
+
+    }else{
+
+      scrollTop.classList.remove(
+        'show'
+      );
+
+    }
+
+  },
+  {
+    passive:true
+  }
+);
+
 
 scrollTop.addEventListener(
   'click',
   () => {
 
     window.scrollTo({
+
       top:0,
+
       behavior:'smooth'
+
     });
 
   }
 );
 
 
-/* =========================
-   PROJECT FILTER
-========================= */
-
-filterBtns.forEach(button => {
-
-  button.addEventListener(
-    'click',
-    () => {
-
-      filterBtns.forEach(btn => {
-        btn.classList.remove('active');
-      });
-
-      button.classList.add('active');
-
-      const filter =
-        button.dataset.filter;
-
-      cards.forEach(card => {
-
-        const tags =
-          card.dataset.tags
-          .split(' ');
-
-        const shouldShow =
-          filter === 'all' ||
-          tags.includes(filter);
-
-        if(shouldShow){
-
-          card.classList.remove('hidden');
-
-          setTimeout(() => {
-            card.style.display = '';
-          }, 20);
-
-        }else{
-
-          card.classList.add('hidden');
-
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 300);
-
-        }
-
-      });
-
-    }
-  );
-
-});
-
-
-/* =========================
-   SCROLL REVEAL
-========================= */
-
-const observer =
-  new IntersectionObserver(
-    entries => {
-
-      entries.forEach(entry => {
-
-        if(entry.isIntersecting){
-
-          entry.target.classList.add(
-            'visible'
-          );
-
-          observer.unobserve(
-            entry.target
-          );
-
-        }
-
-      });
-
-    },
-    {
-      threshold:.12,
-      rootMargin:'0px 0px -40px 0px'
-    }
-  );
-
-
-revealElements.forEach(
-  element => observer.observe(element)
-);
-
-
-/* =========================
-   ESCAPE CLOSES MENU
-========================= */
-
-document.addEventListener(
-  'keydown',
-  event => {
-
-    if(event.key === 'Escape'){
-
-      navLinks.classList.remove('open');
-
-      document.body.classList.remove(
-        'menu-open'
-      );
-
-      menuToggle.setAttribute(
-        'aria-expanded',
-        'false'
-      );
-
-      menuToggle.innerHTML =
-        '<i class="ti ti-menu-2"></i>';
-
-    }
-
-  }
-);
-
-
-/* =========================
-   CLOSE MENU OUTSIDE
-========================= */
-
-document.addEventListener(
-  'click',
-  event => {
-
-    if(
-      navLinks.classList.contains('open') &&
-      !navLinks.contains(event.target) &&
-      !menuToggle.contains(event.target)
-    ){
-
-      navLinks.classList.remove('open');
-
-      document.body.classList.remove(
-        'menu-open'
-      );
-
-      menuToggle.setAttribute(
-        'aria-expanded',
-        'false'
-      );
-
-      menuToggle.innerHTML =
-        '<i class="ti ti-menu-2"></i>';
-
-    }
-
-  }
-);
-
 </script>
 
+
 </body>
+
 </html>
 ```
